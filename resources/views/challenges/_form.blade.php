@@ -16,9 +16,7 @@
     <div class="field">
         <label for="challenge_description" class="label required">Description</label>
         <div class="control">
-            <textarea class="textarea @error('description') is-danger @enderror" id="challenge_description" name="description">
-                {{ $challenge->description ?? '' }}
-            </textarea>
+            <textarea class="textarea @error('description') is-danger @enderror" id="challenge_description" name="description">{{ $challenge->description ?? '' }}</textarea>
         </div>
         @error('description')
             <p class="help is-danger">{{ $message }}</p>

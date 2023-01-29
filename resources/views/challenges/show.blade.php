@@ -42,7 +42,7 @@
                             <td colspan="3">
                                 <div class="content">
                                     <h5>Description:</h5>
-                                    <p>{{ nl2br($challenge->description) }}</p>
+                                    <p>{!! nl2br($challenge->description) !!}</p>
                                 </div>
                             </td>
                         </tr>
