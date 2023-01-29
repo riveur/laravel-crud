@@ -13,7 +13,7 @@ class PageController extends Controller
         $user = auth()->user();
 
         $inactiveChallenges = Challenge::with('author')->doesntHave('users')->get();
-        $activeChallenges = $user->acceptedChallenges()->get();
+        $activeChallenges = $user->acceptedChallenges()->wherePivot('completed', '=', 0)->get();
         $completedChallenges = $user->acceptedChallenges()->wherePivot('completed', '=', 1)->get();
 
         return view('pages.dashboard', compact('inactiveChallenges', 'activeChallenges', 'completedChallenges'));
