@@ -18,6 +18,15 @@
     @show
     <main>
         <div class="container">
+            @foreach (['danger', 'warning', 'success', 'info'] as $label)
+                @if (session()->has($label))
+                    <div class="notification is-{{ $label }}">
+                        <button class="delete"></button>
+                        {{ session()->get($label) }}
+                    </div>
+                @endif
+            @endforeach
+
             @yield('body')
         </div>
     </main>
