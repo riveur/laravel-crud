@@ -105,4 +105,29 @@ class ChallengeController extends Controller
             return redirect()->back()->with('error', 'Action failed try again');
         }
     }
+
+    public function accept(Challenge $challenge)
+    {
+        $challenge->users()->attach(auth()->user()->id, [
+            'completed' => false
+        ]);
+
+        return redirect()->route('dashboard')->with('success', "Challenge {$challenge->title} accepted !");
+    }
+
+    public function giveUp(Challenge $challenge)
+    {
+        $challenge->users()->detach(auth()->user()->id);
+
+        return redirect()->route('dashboard')->with('success', "Challenge {$challenge->title} gived up !");
+    }
+
+    public function complete(Challenge $challenge)
+    {
+        $challenge->users()->syncWithoutDetaching([
+            auth()->user()->id => ['completed' => true]
+        ]);
+
+        return redirect()->route('dashboard')->with('success', "Challenge {$challenge->title} completed !");
+    }
 }

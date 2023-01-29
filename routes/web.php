@@ -18,7 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
+
     Route::resource('challenge', ChallengeController::class);
+    Route::prefix('challenge')->group(function () {
+        Route::post('/{challenge}/accept', [ChallengeController::class, 'accept'])->name('challenge.accept');
+        Route::post('/{challenge}/complete', [ChallengeController::class, 'complete'])->name('challenge.complete');
+        Route::post('/{challenge}/give-up', [ChallengeController::class, 'giveUp'])->name('challenge.give_up');
+    });
 });
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
