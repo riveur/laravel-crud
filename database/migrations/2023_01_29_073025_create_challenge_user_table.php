@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('username')->unique();
-            $table->string('password');
-            $table->timestamps();
+        Schema::create('challenge_user', function (Blueprint $table) {
+            $table->foreignId('challenge_id')->constrained('challenges');
+            $table->foreignId('user_id')->constrained('users');
+            $table->boolean('completed');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('challenge_user');
     }
 };
