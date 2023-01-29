@@ -18,7 +18,7 @@ class ChallengeFactory extends Factory
     {
         return [
             'title' => fake()->title(),
-            'description' => fake()->sentences(),
+            'description' => fake()->sentences(3, true),
             'point' => fake()->numberBetween(10, 500)
         ];
     }
