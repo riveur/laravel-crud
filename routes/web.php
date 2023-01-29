@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [PageController::class, 'dashboard'])->name('dashboard')->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('/', [PageController::class, 'dashboard'])->name('dashboard');
+    Route::resource('challenge', ChallengeController::class);
+});
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate']);

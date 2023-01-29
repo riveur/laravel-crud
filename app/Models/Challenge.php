@@ -14,7 +14,8 @@ class Challenge extends Model
     protected $fillable = [
         'title',
         'description',
-        'point'
+        'point',
+        'author_id'
     ];
 
     public function author(): BelongsTo
