@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('challenge_id')->constrained('challenges');
             $table->foreignId('user_id')->constrained('users');
             $table->boolean('completed');
+            $table->primary(['challenge_id', 'user_id']);
         });
     }
 
