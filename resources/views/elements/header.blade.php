@@ -17,7 +17,7 @@
 
             <div id="navbar" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item" href="#">
+                    <a class="navbar-item" href="{{ route('challenge.index') }}">
                         Challenges
                     </a>
                 </div>
